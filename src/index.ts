@@ -10,12 +10,12 @@ app.use(express.json());
 app.use(express.raw({ type: 'application/vnd.custom-type' }));
 app.use(express.text({ type: 'text/html' }));
 
-app.get('/ghdata', async (req, res) => {
-  const todos = await prisma.testData.findMany({
+app.get('/testData', async (req, res) => {
+  const testData = await prisma.testData.findMany({
     orderBy: { createdAt: 'desc' },
   });
 
-  res.json(todos);
+  res.json(testData);
 });
 
 app.post('/testData', async (req, res) => {
@@ -40,15 +40,15 @@ app.get('/testData/:id', async (req, res) => {
 
 app.put('/testData/:id', async (req, res) => {
   const id = req.params.id;
-  const todo = await prisma.testData.update({
+  const testData = await prisma.testData.update({
     where: { id },
     data: req.body,
   });
 
-  return res.json(todo);
+  return res.json(testData);
 });
 
-app.delete('/todos/:id', async (req, res) => {
+app.delete('/testData/:id', async (req, res) => {
   const id = req.params.id;
   await prisma.testData.delete({
     where: { id },
