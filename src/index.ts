@@ -22,7 +22,7 @@ app.post('/testData', async (req, res) => {
   const testData = await prisma.testData.create({
     data: {
       createdAt: new Date(),
-      data: req.body.text ?? 'Empty test data',
+      data: req.body ?? 'Empty test data',
     },
   });
 
